@@ -37,11 +37,11 @@ public class Servlet extends HttpServlet {
         Funciones f = new Funciones();
         if(f.validarUsuario( request.getParameter("usuario"),request.getParameter("clave"))){
             request.getSession().removeAttribute("errorMessage");
-            request.getRequestDispatcher("/success.jsp").forward(request, response);
+            request.getRequestDispatcher("/jsp/success.jsp").forward(request, response);
         }
         else{
             request.getSession().setAttribute("errorMessage", "El usuario ingresado no esta registrado");
-            request.getRequestDispatcher("/index.jsp").forward(request, response);
+            request.getRequestDispatcher("/jsp/index.jsp").forward(request, response);
         }
     }
 
