@@ -19,7 +19,7 @@ import Modelo.Funciones;
  *
  * @author pepo
  */
-
+@WebServlet(urlPatterns = {"/Servlet"})
 public class Servlet extends HttpServlet {
 
     /**
@@ -41,7 +41,7 @@ public class Servlet extends HttpServlet {
         }
         else{
             request.getSession().setAttribute("errorMessage", "El usuario ingresado no esta registrado");
-            request.getRequestDispatcher("/index.jsp").forward(request, response);
+            request.getRequestDispatcher("/jsp/index.jsp").forward(request, response);
         }
     }
 
