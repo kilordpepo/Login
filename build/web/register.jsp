@@ -5,7 +5,6 @@
 <script type="text/javascript" src="js/angular.js"></script>
 <script type="text/javascript" src="js/angular.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-materialize/0.2.2/angular-materialize.min.js"></script>
-<%@ page import="Modelo.Funciones" %>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <body>
 
@@ -98,9 +97,9 @@
                     $.each(result, function() {
                         $("#repeatSelect").append($("<option />").val(this).text(this));
                     });
-
-                var datos;
-                $(document).ready(function () {
+                });
+                
+               $(document).ready(function () {
                     $('select').material_select();
                     $('.datepicker').pickadate({
                         selectMonths: true, // Creates a dropdown to control month
@@ -108,8 +107,6 @@
                     });
                     
                 });
-                });
-               
                 /*angular.module('myApp', [])
                  .controller('myCtrl', ['$scope', function ($scope) {
                  $.get("Registro", function (data) {

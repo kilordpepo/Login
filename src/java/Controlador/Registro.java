@@ -38,7 +38,6 @@ public class Registro extends HttpServlet {
             String roles[] = f.obtenerRoles();
             for(String rol: roles)
                 json.add(rol);
-            System.out.println("JSON: "+json.toString());
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
                         out.println(json);
