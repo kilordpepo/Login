@@ -83,7 +83,7 @@
                 <select name="repeatSelect" id="repeatSelect">
                     
                 </select>
-                <label>Materialize Select</label>
+                <label>Rol</label>
             </div>
         </div>
         <button class="btn waves-effect waves-light" type="submit" name="action">Submit
@@ -97,9 +97,8 @@
                     $.each(result, function() {
                         $("#repeatSelect").append($("<option />").val(this).text(this));
                     });
-                });
-                
-               $(document).ready(function () {
+                    
+                    $(document).ready(function () {
                     $('select').material_select();
                     $('.datepicker').pickadate({
                         selectMonths: true, // Creates a dropdown to control month
@@ -107,6 +106,9 @@
                     });
                     
                 });
+                });
+                
+               
                 /*angular.module('myApp', [])
                  .controller('myCtrl', ['$scope', function ($scope) {
                  $.get("Registro", function (data) {

@@ -13,7 +13,7 @@
 <script type="text/javascript" src="js/materialize.min.js"></script>
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Login</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
@@ -21,6 +21,7 @@
         <link rel="stylesheet" href="css\login.css">
 
         <div class="login-page ">
+            <img src="img\GECC.png" width="360" height="150"></img>
             <div class="form">
                 <form class="register-form ">
                     <input type="text" placeholder="name"/>
