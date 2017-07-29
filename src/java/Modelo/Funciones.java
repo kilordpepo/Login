@@ -26,7 +26,7 @@ public class Funciones {
             Class.forName("org.postgresql.Driver");
             Connection connection = null;
             connection = DriverManager.getConnection(
-                    "jdbc:postgresql://localhost:5432/Salvatore", "postgres", "salvatore");
+                    "jdbc:postgresql://localhost:5432/Salvatore", "postgres", "admin");
             return connection;
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Funciones.class.getName()).log(Level.SEVERE, null, ex);
@@ -43,9 +43,11 @@ public class Funciones {
             String sql = null;
             conexion.setSchema("login");
             sql = "SELECT cedula FROM login.empleado WHERE usuario='" + usuario + "' AND clave='" + clave + "'";
-            sentencia = conexion.createStatement();
+            sentencia = conexion.createStatement();;
             ResultSet rs = sentencia.executeQuery(sql);
-            if (rs.equals(0)) {
+            boolean condicion = rs.next();
+            if (!condicion) {
+                System.out.println("sss");
                 return false;
             }
             return true;

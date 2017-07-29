@@ -31,17 +31,6 @@ public class Registro extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            Funciones f = new Funciones();
-            JSONArray json= new JSONArray();
-            String roles[] = f.obtenerRoles();
-            for(String rol: roles)
-                json.add(rol);
-            response.setContentType("application/json");
-            response.setCharacterEncoding("UTF-8");
-                        out.println(json);
-        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -56,6 +45,17 @@ public class Registro extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+                Funciones f = new Funciones();
+                JSONArray json= new JSONArray();
+                String roles[] = f.obtenerRoles();
+                for(String rol: roles)
+                    json.add(rol);
+                response.setContentType("application/json");
+                response.setCharacterEncoding("UTF-8");
+                            out.println(json);
+            }
         processRequest(request, response);
     }
 
@@ -71,6 +71,8 @@ public class Registro extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        System.out.println("le diste al boton");
+        request.getRequestDispatcher("/jsp/success.jsp").forward(request, response);
     }
 
     /**

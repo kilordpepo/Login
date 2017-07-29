@@ -13,7 +13,7 @@
             <h4 class="header2" >Registrar Usuario</h4>
         </div>
     </div>
-    <form class="col s12">
+    <form class="col s12" action="Registro" method="post">
         <div class="row">
             <div class="input-field col s3">
                 <i class="material-icons prefix">account_circle</i>
@@ -86,7 +86,7 @@
                 <label>Rol</label>
             </div>
         </div>
-        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+        <button class="btn waves-effect waves-light" type="submit" name="registrar" value="btnRegistrar">Registrar
             <i class="material-icons right">send</i>
         </button>
     </form>
