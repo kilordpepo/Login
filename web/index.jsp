@@ -23,6 +23,7 @@
         <div class="login-page ">
             <img src="img\GECC.png" width="360" height="150"></img>
             <div class="form">
+                <!--
                 <form class="register-form ">
                     <input type="text" placeholder="name"/>
                     <input type="password" placeholder="password"/>
@@ -30,11 +31,12 @@
                     <button>create</button>
                     <p class="message">Ya estas registrado? <a href="#">Sign In</a></p>
                 </form>
+                -->
                 <form class="login-form" action="login" method ="post">
-                     <div style="color: #FF0000;">${errorMessage}</div>
+                    <div style="color: #FF0000;">${errorMessage}</div>
                     <input type="text" placeholder="username" name="usuario"/>
                     <input type="password" placeholder="password" name="clave"/>
-                  <button>login</button>
+                    <button>login</button>
                     <p class="message">No estás registrado? <a href="register.jsp">Crea una cuenta</a></p>
                 </form>
             </div>

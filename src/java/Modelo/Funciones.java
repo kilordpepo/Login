@@ -42,10 +42,10 @@ public class Funciones {
             Statement sentencia = null;
             String sql = null;
             conexion.setSchema("login");
-            sql = "SELECT cedula FROM EMPLEADO WHERE usuario='" + usuario + "' AND clave='" + clave + "'";
+            sql = "SELECT cedula FROM login.empleado WHERE usuario='" + usuario + "' AND clave='" + clave + "'";
             sentencia = conexion.createStatement();
             ResultSet rs = sentencia.executeQuery(sql);
-            if (rs.getRow() == 0) {
+            if (rs.equals(0)) {
                 return false;
             }
             return true;
@@ -53,7 +53,63 @@ public class Funciones {
             Logger.getLogger(Funciones.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
-
+    }
+    
+    public boolean userExist(String usuario) {
+        try {
+            Connection conexion = conectarBd();
+            Statement sentencia = null;
+            String sql = null;
+            conexion.setSchema("login");
+            sql = "SELECT usuario FROM login.empleado WHERE usuario='" + usuario + "'";
+            sentencia = conexion.createStatement();
+            ResultSet rs = sentencia.executeQuery(sql);
+            if (rs.equals(usuario)) {
+                return false; // si devuelve false, usuario no existe
+            }
+            return true; // si devuelve true, usuario existe
+        } catch (SQLException ex) {
+            Logger.getLogger(Funciones.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
+    
+    public boolean emailExist(String correo) {
+        try {
+            Connection conexion = conectarBd();
+            Statement sentencia = null;
+            String sql = null;
+            conexion.setSchema("login");
+            sql = "SELECT correo_personal FROM login.empleado WHERE correo_personal='" + correo + "'";
+            sentencia = conexion.createStatement();
+            ResultSet rs = sentencia.executeQuery(sql);
+            if (rs.equals(correo)) {
+                return false; // si devuelve false, usuario no existe
+            }
+            return true; // si devuelve true, usuario existe
+        } catch (SQLException ex) {
+            Logger.getLogger(Funciones.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
+    
+    public boolean cedulaExist(String cedula) {
+        try {
+            Connection conexion = conectarBd();
+            Statement sentencia = null;
+            String sql = null;
+            conexion.setSchema("login");
+            sql = "SELECT cedula FROM login.empleado WHERE cedula='" + cedula + "'";
+            sentencia = conexion.createStatement();
+            ResultSet rs = sentencia.executeQuery(sql);
+            if (rs.equals(cedula)) {
+                return false; // si devuelve false, usuario no existe
+            }
+            return true; // si devuelve true, usuario existe
+        } catch (SQLException ex) {
+            Logger.getLogger(Funciones.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
     }
 
     public String[] obtenerRoles() {
