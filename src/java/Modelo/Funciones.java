@@ -66,7 +66,8 @@ public class Funciones {
             sql = "SELECT usuario FROM login.empleado WHERE usuario='" + usuario + "'";
             sentencia = conexion.createStatement();
             ResultSet rs = sentencia.executeQuery(sql);
-            if (rs.equals(usuario)) {
+            boolean condicion = rs.next();
+            if (!condicion) {
                 return false; // si devuelve false, usuario no existe
             }
             return true; // si devuelve true, usuario existe
@@ -85,7 +86,8 @@ public class Funciones {
             sql = "SELECT correo_personal FROM login.empleado WHERE correo_personal='" + correo + "'";
             sentencia = conexion.createStatement();
             ResultSet rs = sentencia.executeQuery(sql);
-            if (rs.equals(correo)) {
+            boolean condicion = rs.next();
+            if (!condicion) {
                 return false; // si devuelve false, usuario no existe
             }
             return true; // si devuelve true, usuario existe
@@ -104,13 +106,41 @@ public class Funciones {
             sql = "SELECT cedula FROM login.empleado WHERE cedula='" + cedula + "'";
             sentencia = conexion.createStatement();
             ResultSet rs = sentencia.executeQuery(sql);
-            if (rs.equals(cedula)) {
+            boolean condicion = rs.next();
+            if (!condicion) {
                 return false; // si devuelve false, usuario no existe
             }
             return true; // si devuelve true, usuario existe
         } catch (SQLException ex) {
             Logger.getLogger(Funciones.class.getName()).log(Level.SEVERE, null, ex);
             return false;
+        }
+    }
+    
+    // si devuelve 0, la direccion no existe
+    // si devuelve x, la direccion existe y x es el id
+    public int dirExist(String direccion){
+        try {
+            Connection conexion = conectarBd();
+            Statement sentencia = null;
+            String sql = null;
+            conexion.setSchema("login");
+            sql = "SELECT id_direc FROM login.direccion WHERE nombre='" + direccion + "'";
+            sentencia = conexion.createStatement();
+            ResultSet rs = sentencia.executeQuery(sql);
+            boolean condicion = rs.next();
+            int id=0;
+            if (!condicion) {// si devuelve false, direccion no existe
+                sql = "INSERT INTO login.direccion(nombre) VALUES ('" + direccion + "') RETURNING id_direc"; 
+                rs = sentencia.executeQuery(sql);
+                id=rs.getInt(1);
+            } else {// si devuelve true, direccion existe
+                id=rs.getInt(1);
+            }
+            return id; 
+        } catch (SQLException ex) {
+            Logger.getLogger(Funciones.class.getName()).log(Level.SEVERE, null, ex);
+            return 0;
         }
     }
 
