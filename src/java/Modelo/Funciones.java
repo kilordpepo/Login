@@ -28,7 +28,7 @@ public class Funciones {
             Class.forName("org.postgresql.Driver");
             Connection connection = null;
             connection = DriverManager.getConnection(
-                    "jdbc:postgresql://localhost:5432/Salvatore", "postgres", "admin");
+                    "jdbc:postgresql://localhost:5432/Salvatore", "postgres", "salvatore");
             return connection;
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Funciones.class.getName()).log(Level.SEVERE, null, ex);
