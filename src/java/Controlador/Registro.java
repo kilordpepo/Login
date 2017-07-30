@@ -71,8 +71,50 @@ public class Registro extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        System.out.println("le diste al boton");
-        request.getRequestDispatcher("/jsp/success.jsp").forward(request, response);
+        //registrarUsuario(String pnombre, String snombre, String papellido, String sapellido, 
+        //String cedula, String usuario, String clave, String fnacimiento, String correo, String direccion, String rol, String telefono) {
+        Funciones f = new Funciones();
+        int resultado = f.registrarUsuario(request.getParameter("primer_nombre"), request.getParameter("segundo_nombre"), request.getParameter("primer_apellido"),
+                request.getParameter("segundo_apellido"), request.getParameter("cedula"), request.getParameter("usuario"), request.getParameter("clave"), request.getParameter("nacimiento"),
+                request.getParameter("email"), request.getParameter("direccion"), request.getParameter("repeatSelect"), request.getParameter("telefono"));
+        
+        switch (resultado){
+            // si devuelve 0, no hay error
+            // si devuelve 1, usuario existe
+            // si devuelve 2, cedula existe
+            // si devuelve 3, cedula con formato incorrecto
+            // si devuelve 4, correo existe
+            // si devuelve 5, correo con formato incorrecto
+            // si devuelve 6, telefono con formato incorrecto
+            case 0: 
+                request.getSession().removeAttribute("errorMessage");
+                request.getRequestDispatcher("/jsp/success.jsp").forward(request, response);
+                break;
+            case 1: 
+                request.getSession().setAttribute("errorMessage", "El usuario ingresado ya existe");
+                request.getRequestDispatcher("/register.jsp").forward(request, response);
+                break;
+            case 2:  
+                request.getSession().setAttribute("errorMessage", "La cedula ingresada ya existe");
+                request.getRequestDispatcher("/register.jsp").forward(request, response);
+                break;
+            case 3:  
+                request.getSession().setAttribute("errorMessage", "La cedula tiene un formato incorrecto");
+                request.getRequestDispatcher("/register.jsp").forward(request, response);
+                break;
+            case 4:
+                request.getSession().setAttribute("errorMessage", "El correo ingresado ya existe");
+                request.getRequestDispatcher("/register.jsp").forward(request, response);
+                break;
+            case 5: 
+                request.getSession().setAttribute("errorMessage", "El correo tiene un formato incorrecto");
+                request.getRequestDispatcher("/register.jsp").forward(request, response);
+                break;
+            case 6: 
+                request.getSession().setAttribute("errorMessage", "El telefono tiene un formato incorrecto");
+                request.getRequestDispatcher("/register.jsp").forward(request, response);
+                break;
+        }
     }
 
     /**
